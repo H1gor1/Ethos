@@ -1,19 +1,18 @@
 import type { Request, Response } from "express";
 import { UserResponse } from "./UserResponse.js";
 import type { CreateUserRequest } from "./createUserRequest.js";
-import { prisma } from "../../../lib/prisma.js";
 import { UserService } from "./userService.js";
 
 export const UserController = {
     async getUser(req: Request, res: Response) {
         
-        const { id } = req.query;
+        const { email } = req.query;
 
-        if (typeof id !== 'string') {
-            return res.status(400).json({ message: "Invalid user ID" });
+        if (typeof email !== 'string') {
+            return res.status(400).json({ message: "Invalid user email" });
         }
 
-        const user = await UserService.getUser(id);
+        const user = await UserService.getUser(email);
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });

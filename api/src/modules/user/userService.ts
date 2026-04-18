@@ -8,8 +8,8 @@ export const UserService = {
         return user;
     },
 
-    async getUser(id: string) {
-        const user = await UserRepository.getUser(id);
+    async getUser(email: string) {
+        const user = await UserRepository.findUserByEmail(email);
         return user;
     }
 }

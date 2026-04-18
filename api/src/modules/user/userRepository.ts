@@ -15,13 +15,9 @@ export const UserRepository = {
         return user;
     },
 
-    async getUser(id: string) {
-        const user = await prisma.user.findUnique({
-            where: {
-                id
-            }
+    async findUserByEmail(email: string) {
+        return await prisma.user.findUnique({
+            where: { email }
         });
-
-        return user;
-    }
+    },
 }
