@@ -17,7 +17,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 
     const jwtSecret = process.env.JWT_SECRET as string;
     jwt.verify(token, jwtSecret, (err, decoded) => {
-        if (err || !decoded) return res.status(403).json({ message: 'Invalid token' });
+        if (err || !decoded) return res.status(403).json({ message: 'User not authenticated' });
         req.user = decoded;
         next();
     });

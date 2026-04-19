@@ -17,4 +17,51 @@ model User {
   username  String
   email     String   @unique
   password  String
+
+  userRoles UserRole[]
+  profiles Profile[]
+}
+
+model Profile {
+  id     Int    @id @default(autoincrement())
+  bio    String
+  imageUrl String?
+  userId String @unique
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+
+  userRoles UserRole[]
+  rolePermissions RolePermission[]
+}
+
+model UserRole {
+  userId String
+  roleId Int
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+}
+
+model Permission {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  
+  rolePermissions RolePermission[]
+}
+
+model RolePermission {
+  roleId       Int
+  permissionId Int
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
 }

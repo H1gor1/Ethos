@@ -1,13 +1,12 @@
-import { type CreateUserRequest } from "../user/createUserRequest.js";
-import { AuthRepository } from "./authRepository.js";
 import { UserRepository } from "../user/userRepository.js";
 import jwt, { type Secret, type SignOptions } from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { UserResponse } from "../user/UserResponse.js";
 import type { LoginRequest } from "./loginRequest.js";
+import type { registerRequest } from "./registerRequest.js";
 
 export const AuthService = {
-    async register(userData: CreateUserRequest) {
+    async register(userData: registerRequest) {
         
         const existingUser = await UserRepository.findUserByEmail(userData.email);
 
@@ -16,8 +15,6 @@ export const AuthService = {
         }
 
         const hashedPassword = await bcrypt.hash(userData.password, 12);
-
-        // const token = jwt.sign({ username: userData.username, email: userData.email }, process.env.JWT_SECRET!, { expiresIn: '1h' });
 
         const newUser = await UserRepository.createUser({
             username: userData.username,
@@ -45,10 +42,16 @@ export const AuthService = {
         const jwtExpiresIn: SignOptions["expiresIn"] =
             (process.env.JWT_EXPIRES_IN as SignOptions["expiresIn"]) ?? "1h";
 
+        const roles = user.userRoles.map((userRole) => ({
+            id: userRole.roleId,
+            name: userRole.role.name,
+        }));
+
         const token = jwt.sign(
             { 
             username: user.username, 
-            email: user.email 
+            email: user.email,
+            roles,
             }, 
             jwtSecret, 
             { 
