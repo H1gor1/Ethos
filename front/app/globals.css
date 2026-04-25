@@ -1,7 +1,10 @@
 @import "tailwindcss";
+@variant dark (&:where([data-theme="dark"]));
 
 :root {
   --background: #F0EDE6;
+  --search: #FFFF;
+  --search-hover: #f5eded;
   --border: #D0CCC4;
   --text-secondary: #4A4A4A;
   --text-primary: #1A1A1A;
@@ -11,15 +14,20 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-search:     var(--search);
+  --color-search-hover: var(--search-hover);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 .dark {
   --background: #0D0D0D;
+  --search: #7e6868;
+  --search-hover: #453636;
   --foreground: #ededed;
   --surface-dark: #1A1A1A;
-  --border-dark: #2A2A2A;
+  --border: #2A2A2A;
   --text-secondary-dark: #A0A09A;
   --text-primary-dark: #E8E4DC;
 }
@@ -27,5 +35,4 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
