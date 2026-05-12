@@ -12,11 +12,11 @@ export const PostsController = {
             const createPost = await PostsService.createPost(req.body, req.user.id);
             res.status(201).json({
                 message: "Post created",
-                post: createPost,
             })
         } catch (error) {
             res.status(500).json({
                 message: "Error creating post", 
+                error
             })
         }
     }

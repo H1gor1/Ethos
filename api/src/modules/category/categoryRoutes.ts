@@ -1,15 +1,10 @@
 import Express from "express";
-import { PostsController } from "./postsController.js";
+import { CategoryController } from "./categoryController.js";
 import { validateRequest } from "../../shared/middlewares/validateRequest.js";
-import { createPostRequestSchema } from "./dtos/createPostRequest.js";
+import { createCategorySchema } from "./dto/createCategoryRequest.js";
 import { checkPermission } from "../../shared/middlewares/checkPermission.js";
 import { PermissionEnum } from "../../shared/enums/permission.enum.js";
 
 export const router = Express.Router()
 
-router.post(
-    '/', 
-    validateRequest(createPostRequestSchema), 
-    checkPermission(PermissionEnum.CREATE_POST), 
-    PostsController.create
-);
+router.post('/', validateRequest(createCategorySchema), CategoryController.create);
