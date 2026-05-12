@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { AuthService } from "./authService.js";
-import type { LoginRequest } from "./loginRequest.js";
-import type { registerRequest } from "./registerRequest.js";
+import type { LoginRequest } from "./dtos/loginRequest.js";
+import type { registerRequest } from "./dtos/registerRequest.js";
 
 export const AuthController = {
     async register(req: Request<{}, {}, registerRequest>, res: Response) {

@@ -1,6 +1,6 @@
 import Express from "express";
 import { validateRequest } from "../../shared/middlewares/validateRequest.js";
-import { createUserRequestSchema } from "./createUserRequest.js";
+import { createUserRequestSchema } from "./dtos/createUserRequest.js";
 import { UserController } from "./userController.js";
 import { checkPermission } from "../../shared/middlewares/checkPermission.js";
 import { PermissionEnum } from "../../shared/enums/permission.enum.js";

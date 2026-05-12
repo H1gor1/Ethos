@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import type { CreatePostRequest } from "./postsDto.js";
+import type { CreatePostRequest } from "./dtos/createPostRequest.js";
 import { PostsService } from "./postsService.js";
 
 export const PostsController = {
@@ -17,7 +17,6 @@ export const PostsController = {
         } catch (error) {
             res.status(500).json({
                 message: "Error creating post", 
-                error
             })
         }
     }

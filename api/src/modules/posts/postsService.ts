@@ -1,4 +1,4 @@
-import { type CreatePostRequest } from "./postsDto.js";
+import { type CreatePostRequest } from "./dtos/createPostRequest.js";
 import { PostsRepository } from "./postsRepository.js";
 import slugify from "slugify";
 

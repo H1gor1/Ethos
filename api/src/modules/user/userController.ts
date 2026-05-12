@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { UserResponse } from "./UserResponse.js";
-import type { CreateUserRequest } from "./createUserRequest.js";
+import { UserResponse } from "./dtos/UserResponse.js";
+import type { CreateUserRequest } from "./dtos/createUserRequest.js";
 import { UserService } from "./userService.js";
 
 export const UserController = {

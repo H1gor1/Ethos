@@ -1,9 +1,9 @@
 import { UserRepository } from "../user/userRepository.js";
 import jwt, { type Secret, type SignOptions } from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { UserResponse } from "../user/UserResponse.js";
-import type { LoginRequest } from "./loginRequest.js";
-import type { registerRequest } from "./registerRequest.js";
+import { UserResponse } from "../user/dtos/UserResponse.js";
+import type { LoginRequest } from "./dtos/loginRequest.js";
+import type { registerRequest } from "./dtos/registerRequest.js";
 
 export const AuthService = {
     async register(userData: registerRequest) {

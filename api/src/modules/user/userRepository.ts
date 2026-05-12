@@ -1,6 +1,6 @@
 import { id } from "zod/locales";
 import { prisma } from "../../../lib/prisma.js"
-import type { registerRequest } from "../auth/registerRequest.js";
+import type { registerRequest } from "../auth/dtos/registerRequest.js";
 
 export const UserRepository = {
 

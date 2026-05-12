@@ -1,5 +1,5 @@
 import { UserRepository } from "./userRepository.js";
-import type { CreateUserRequest } from "./createUserRequest.js";
+import type { CreateUserRequest } from "./dtos/createUserRequest.js";
 
 export const UserService = {
 
