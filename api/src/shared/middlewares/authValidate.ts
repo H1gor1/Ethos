@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import jwt from "jsonwebtoken";
+import type { AuthUser } from "../types/authUser.js";
 
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
@@ -18,7 +19,23 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     const jwtSecret = process.env.JWT_SECRET as string;
     jwt.verify(token, jwtSecret, (err, decoded) => {
         if (err || !decoded) return res.status(403).json({ message: 'User not authenticated' });
-        req.user = decoded;
+
+        if (typeof decoded === "string") {
+            return res.status(403).json({ message: 'Invalid token payload' });
+        }
+
+        const payload = decoded as Partial<AuthUser>;
+        if (!payload.id || !payload.email || !payload.username || !Array.isArray(payload.roles)) {
+            return res.status(403).json({ message: 'Invalid token payload' });
+        }
+
+        req.user = {
+            id: payload.id,
+            email: payload.email,
+            username: payload.username,
+            roles: payload.roles,
+        };
+
         next();
     });
 }

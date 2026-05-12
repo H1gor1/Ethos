@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Post" ALTER COLUMN "disabled" SET DEFAULT false,
+ALTER COLUMN "updatedAt" DROP NOT NULL,
+ALTER COLUMN "totalLikes" SET DEFAULT 0,
+ALTER COLUMN "totalViews" SET DEFAULT 0;

@@ -20,6 +20,12 @@ model User {
 
   userRoles UserRole[]
   profiles Profile[]
+
+  posts Post[]
+
+  postsLikes PostsLikes[]
+
+  replies Reply[]
 }
 
 model Profile {
@@ -64,4 +70,65 @@ model RolePermission {
   permission Permission @relation(fields: [permissionId], references: [id])
 
   @@id([roleId, permissionId])
+}
+
+model Category {
+  id    Int   @id @default(autoincrement())
+  name  String
+  color String
+
+  posts Post[]
+}
+
+model Post {
+  id  Int   @id @default(autoincrement())
+  title String
+  content String @db.Text
+  sumary String?
+  coverImage String?
+
+  authorId String
+  categoryId Int
+  slug String @unique
+
+  totalLikes Int @default(0)
+  totalViews Int @default(0)
+
+  disabled Boolean @default(false)
+  createdAt  DateTime
+  updatedAt  DateTime?
+
+  category Category @relation(fields: [categoryId], references: [id])
+  author User @relation(fields: [authorId], references: [id])
+
+  postsLikes PostsLikes[]
+  replies Reply[]
+}
+
+model PostsLikes {
+  userId String
+  postId Int
+  likedAt DateTime
+
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
+
+  @@id([userId, postId])  
+}
+
+model Reply {
+  id    Int @id @default(autoincrement())
+
+  content String @db.VarChar(300)
+  level   Int @default(0)
+  parentId  Int?
+
+  postId  Int
+  userId  String
+
+  parent Reply? @relation("ReplyToReply", fields: [parentId], references: [id])
+  children Reply[] @relation("ReplyToReply")
+
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
 }
