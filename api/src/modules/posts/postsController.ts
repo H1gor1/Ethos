@@ -26,7 +26,7 @@ export const PostsController = {
     async getBySlug(req: Request, res: Response) {
         try{
             const slug = req.params.id;
-            const post = await PostsService.getBySlug(slug);
+            const post = await PostsService.getPostBySlug(String(slug));
             return res.status(200).json(post);
         } catch (error) {
             res.status(500).json({
