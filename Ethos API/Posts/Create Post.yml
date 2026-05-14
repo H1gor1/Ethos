@@ -1,0 +1,24 @@
+info:
+  name: Create Post
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:3000/post
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Post Teste2",
+        "content": "#Teste2",
+        "sumary": "Teste2",
+        "categoryId": 4
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

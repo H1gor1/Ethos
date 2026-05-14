@@ -1,0 +1,28 @@
+info:
+  name: Login
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:3000/auth/login
+  body:
+    type: json
+    data: |-
+      {
+        "email": "contato@higorlino.dev",
+        "password": "16122002"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const token = res.body.token;
+        bru.setEnvVar("token", token);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

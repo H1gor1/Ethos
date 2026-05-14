@@ -1,0 +1,4 @@
+name: Ethos
+variables:
+  - secret: true
+    name: token

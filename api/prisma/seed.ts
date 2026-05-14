@@ -60,6 +60,9 @@ async function main() {
         { roleId: getRoleId("EDITOR"), permissionId: getPermissionId("UPDATE_POST") },
         { roleId: getRoleId("EDITOR"), permissionId: getPermissionId("DELETE_POST") },
 
+        { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_CATEGORY") },
+        { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_ALL_CATEGORIES")},
+
         { roleId: getRoleId("EDITOR"), permissionId: getPermissionId("CREATE_COMMENT") },
         { roleId: getRoleId("EDITOR"), permissionId: getPermissionId("READ_COMMENT") },
         { roleId: getRoleId("EDITOR"), permissionId: getPermissionId("UPDATE_COMMENT") },
@@ -75,6 +78,8 @@ async function main() {
 
         { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_POST") },
         { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_ALL_POSTS") },
+        { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_CATEGORY") },
+        { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_ALL_CATEGORIES") },
 
         { roleId: getRoleId("USER"), permissionId: getPermissionId("CREATE_COMMENT") },
         { roleId: getRoleId("USER"), permissionId: getPermissionId("READ_COMMENT") },

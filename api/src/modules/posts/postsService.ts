@@ -1,4 +1,5 @@
 import { type CreatePostRequest } from "./dtos/createPostRequest.js";
+import type { postsPaginatedRequest } from "./dtos/postsPaginatedRequest.js";
 import { PostsRepository } from "./postsRepository.js";
 import slugify from "slugify";
 
@@ -28,5 +29,13 @@ export const PostsService = {
         }
 
         return PostsRepository.createPost(newPost);
+    },
+
+    async getPostBySlug(slug: string) {
+        return PostsRepository.getBySlug(slug);
+    },
+
+    async getPostList(data: postsPaginatedRequest){
+        return PostsRepository.getSearchPaginated(data);
     }
 }

@@ -32,5 +32,7 @@ export const CategoryRepository = {
             take: take,
             skip: skip,
         })
+
+        return result
     }
 }
